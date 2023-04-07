@@ -1,7 +1,12 @@
 {
-  "name": "ger-site",
+  "name": "ger-terminal-site",
+  "author": {
+    "name": "gerDevX",
+    "email": "gDevX@outlook.com"
+  },
+  "description": "My personal terminal website",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
