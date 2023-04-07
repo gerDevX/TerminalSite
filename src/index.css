@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: cursor, monospace;
+  background-color: #002335;
+}
+
+::selection {
+  color: #211830;
+  background-color: #519975;
+}
+::-moz-selection {
+  color: #211830;
+  background-color: #519975;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.console-row {
+  display: block;
+  line-height: 1.3em;
+  letter-spacing: 0.03em;
+  animation: typing 1s steps(30, end);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.console-info {
+  color: #b89076;
+}
+
+.command {
+  color: #72f1b8;
+  text-shadow: 0 0 5px #72f1b8;
+}
+
+#cmd {
+  cursor: text;
+  height: 50px;
+  color: #73abad;
+}
+
+#liner {
+  line-height: 1.3em;
+  margin-top: -2px;
+  animation: show 0.5s ease forwards;
+  animation-delay: 1.2s;
+  opacity: 0;
+}
+
+#cmd-input {
+  left: -1000px;
+  position: absolute;
+}
+
+/* Cursor Start */
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor {
+  font-size: 12px;
+  color: #73abad;
+  background-color: #73abad;
+  position: relative;
+  opacity: 1;
+  height: 1.5em;
+  width: 10px;
+  max-width: 10px;
+  transform: translateY(4px);
+  overflow: hidden;
+  text-indent: -5px;
+  display: inline-block;
+  text-decoration: blink;
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Cursor End */
+
+.user-prompt-info {
+  color: #00baec;
+  font-weight: bold;
+}
+
+.user-prompt-host {
+  color: #72f1b8;
+}
