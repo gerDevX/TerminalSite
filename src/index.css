@@ -53,7 +53,7 @@ body {
   line-height: 1.3em;
   margin-top: -2px;
   animation: show 0.5s ease forwards;
-  animation-delay: 1.2s;
+  animation-delay: 2.1s;
   opacity: 0;
 }
 
@@ -104,3 +104,40 @@ body {
 .user-prompt-host {
   color: #72f1b8;
 }
+
+.history-text {
+  height: 50px;
+  color: #73abad;
+}
+
+.history-container {
+  padding-top: 1rem;
+}
+
+/* .result-row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+} */
+
+.result-row {
+  /* display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 10%; */
+  color: #72f1b8;
+  text-shadow: 0 0 5px #72f1b8;
+  text-align: right;
+}
+.result-row .desc {
+  color: #b89076;
+  text-shadow: 0 0 0;
+  text-align: left;
+  white-space: pre-wrap;
+}
+/* .result-row-desc {
+  color: #b89076;
+  text-align: left;
+  white-space: pre-wrap;
+  padding-left: 3rem;
+} */

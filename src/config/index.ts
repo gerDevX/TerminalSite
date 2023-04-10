@@ -1,8 +1,26 @@
 export const config = {
-  readmeUrl:
-    'https://raw.githubusercontent.com/cveinnt/cveinnt/master/README.md',
-  title: 'LiveTerm',
-  name: 'John Doe',
+  title: ' | Full Stack Developer',
+  author: 'Gerald Solano (GS)',
+  name: 'Gerald Solano',
+  availableCommands: [
+    {
+      name: 'help',
+      description: 'List all available commands.',
+    },
+    {
+      name: 'about',
+      description: 'About me.',
+    },
+    {
+      name: 'contact',
+      description:
+        'Email me for any projects to contribute or any job proposals.',
+    },
+    {
+      name: 'summary',
+      description: 'My summary info.',
+    },
+  ],
   social: {
     github: 'github',
     linkedin: 'linkedin',

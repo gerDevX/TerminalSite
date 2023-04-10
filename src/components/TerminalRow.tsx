@@ -27,7 +27,6 @@ export const TerminalRow = ({
   return (
     <>
       {textLines.forEach((textLine: string, index: number) => {
-        console.log(textLine);
         renderRow(textLine, index + 1);
       })}
       <div id="container-row" ref={containerRef} />
