@@ -47,11 +47,21 @@ export const TerminalPrompt = (): JSX.Element => {
     }
   };
 
+  const renderNameCommand = (text: string): string => {
+    const size = text.length;
+    if (size > 12) return text;
+
+    const missingSpaces = 12 - size;
+    const spaces = '&nbsp;'.repeat(missingSpaces);
+
+    return text + spaces;
+  };
+
   const commandResult = (cmd: string): JSX.Element => {
     switch (cmd) {
       case 'lastCmd':
         return (
-          <p className="console-row last-cmd">
+          <p className="console-row">
             <TermUser />
             <span className="history-text">{currentCmd}</span>
           </p>
@@ -63,11 +73,15 @@ export const TerminalPrompt = (): JSX.Element => {
               return (
                 <p className="console-row" key={index}>
                   <span className="result-row">
-                    {option.name}{' '}
-                    <label className="desc">{option.description}</label>{' '}
-                    {/* <span className="result-row-desc">
-                      
-                    </span> */}
+                    <span
+                      className="result-row-name"
+                      dangerouslySetInnerHTML={{
+                        __html: renderNameCommand(option.name),
+                      }}
+                    />
+                    <span className="result-row-desc">
+                      {option.description}
+                    </span>
                   </span>
                 </p>
               );
