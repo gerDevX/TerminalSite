@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import clsx from 'clsx';
 import { config } from '../config';
 import { TerminalUser as TermUser } from './TerminalUser';
 import ReactDOMServer from 'react-dom/server';
@@ -57,6 +58,12 @@ export const TerminalPrompt = (): JSX.Element => {
     return text + spaces;
   };
 
+  const openLink = (link: string): void => {
+    setTimeout(() => {
+      window.open(link, '_blank');
+    }, 500);
+  };
+
   const commandResult = (cmd: string): JSX.Element => {
     switch (cmd) {
       case 'lastCmd':
@@ -66,12 +73,18 @@ export const TerminalPrompt = (): JSX.Element => {
             <span className="history-text">{currentCmd}</span>
           </p>
         );
-      case 'help': {
+      case 'help':
         return (
           <>
             {config.availableCommands.map((option: any, index: number) => {
               return (
-                <p className="console-row" key={index}>
+                <p
+                  className={clsx('console-row', {
+                    'mt-3': index === 0,
+                    'mb-3': index === config.availableCommands.length - 1,
+                  })}
+                  key={index}
+                >
                   <span className="result-row">
                     <span
                       className="result-row-name"
@@ -88,44 +101,136 @@ export const TerminalPrompt = (): JSX.Element => {
             })}
           </>
         );
-      }
       case 'about':
         return (
           <>
-            <p className="console-row">
-              <TermUser />
-              <span className="history-text">about</span>
-            </p>
-            <p className="console-row">
-              <span className="console-info">
-                I am a software engineer and web developer with a passion for
-                learning new technologies and building new things. I am
-                currently working as a software engineer at{' '}
-                <a
-                  href="https://www.athenahealth.com/"
-                  target="_blank"
-                  rel="noreferrer"
+            {config.aboutMe.map((about: string, index: number) => {
+              return (
+                <p
+                  className={clsx('console-row pl-7', {
+                    'mt-3': index === 0,
+                    'mb-3': index === config.aboutMe.length - 1,
+                  })}
                 >
-                  Test
-                </a>
-                .
+                  <span className="console-info">{about}</span>
+                </p>
+              );
+            })}
+          </>
+        );
+      case 'contact':
+        openLink('mailto:' + config.email);
+
+        return (
+          <>
+            <p className="console-row pl-7 mt-3 mb-3">
+              <span className="console-info">
+                Opening mailto:&nbsp;
+                <a href={'mailto:' + config.email}>{config.email}</a>.
               </span>
             </p>
           </>
         );
-      default:
+      case 'social':
+        return (
+          <>
+            {config.social.map((social: any, index: number) => {
+              return (
+                <p
+                  className={clsx('console-row', {
+                    'mt-3': index === 0,
+                    'mb-3': index === config.social.length - 1,
+                  })}
+                >
+                  <span className="result-row">
+                    <span
+                      className="result-row-desc"
+                      dangerouslySetInnerHTML={{
+                        __html: renderNameCommand(social.name),
+                      }}
+                    />
+                    <span className="result-row-desc">
+                      <a href={social.url} target="_blank">
+                        {social.url}
+                      </a>
+                    </span>
+                  </span>
+                </p>
+              );
+            })}
+          </>
+        );
+      case 'summary':
+        return (
+          <>
+            <div className="pl-7 mt-3 mb-3">
+              <p className="console-row console-info">
+                <i className="bx bx-home-alt" />
+                &nbsp;SUMMARY
+              </p>
+              <p className="console-row console-info">-----------------</p>
+              <p className="console-row console-info">
+                <i className="bx bx-user" />
+                &nbsp;{config.name}
+              </p>
+              <p className="console-row console-info">
+                <i className="bx bx-code-alt" />
+                &nbsp;{config.title}
+              </p>
+              <p className="console-row console-info">
+                <i className="bx bx-code-curly" />
+                &nbsp;
+                <a href={config.resume_url} target="_blank">
+                  Go to CV Resume
+                </a>
+              </p>
+              <br />
+              <p className="console-row console-info">
+                <i className="bx bx-at" />
+                &nbsp;CONTACT
+              </p>
+              <span className="console-row console-info">
+                -----------------
+              </span>
+              <p className="console-row console-info">
+                <i className="bx bx-envelope" />
+                &nbsp;
+                <a href={'mailto:' + config.email} target="_blank">
+                  {config.email}
+                </a>
+              </p>
+              {config.social.map((social: any, index: number) => {
+                return (
+                  <p className="console-row console-info">
+                    <i className={social.icon} />
+                    &nbsp;
+                    <a href={social.url} target="_blank">
+                      {social.url}
+                    </a>
+                  </p>
+                );
+              })}
+            </div>
+          </>
+        );
+      case 'clear':
+        const historyContainer = document.getElementById('cmd-history');
+        if (historyContainer) {
+          historyContainer.innerHTML = '';
+        }
+
         return <></>;
-      // case 'contact':
-      //   return (
-      //     <>
-      //       <p className="console-row">
-      //         <TermUser />
-      //         <span className="history-text">contact</span>
-      //       </p>
-      //       <p className="console-row">
-      //         <span className="console-info">
-      //           You can reach me at{' '}
-      //           <a href="mailto:
+      default:
+        return (
+          <>
+            <p className="console-row pl-7 mt-3 mb-3">
+              <span className="console-info">
+                Command not found. Type <span className="command">"help"</span>{' '}
+                to see available commands.
+              </span>
+            </p>
+          </>
+        );
     }
   };
 
@@ -141,14 +246,17 @@ export const TerminalPrompt = (): JSX.Element => {
     const historyContainer = document.getElementById('cmd-history');
     const lastCommand = commandResult('lastCmd');
     const resultCommand = commandResult(cmd);
-
-    console.log(resultCommand.props.children);
-
     appendHtml(lastCommand);
     setTimeout(() => {
-      resultCommand.props.children.map((child: any) => {
-        appendHtml(child);
-      });
+      if (resultCommand.props.children.length > 0) {
+        resultCommand.props.children.map((child: any) => {
+          appendHtml(child);
+        });
+      } else if (resultCommand.props.children) {
+        appendHtml(resultCommand.props.children);
+      } else {
+        appendHtml(resultCommand.props);
+      }
     }, 600);
   };
 

@@ -1,5 +1,5 @@
 export const config = {
-  title: ' | Full Stack Developer',
+  title: 'Full Stack Developer',
   author: 'Gerald Solano (GS)',
   name: 'Gerald Solano',
   availableCommands: [
@@ -12,28 +12,44 @@ export const config = {
       description: 'About me.',
     },
     {
-      name: 'contact',
-      description:
-        'Email me for any projects to contribute or any job proposals.',
+      name: 'social',
+      description: 'My social media accounts.',
     },
     {
       name: 'summary',
       description: 'My summary info.',
     },
+    {
+      name: 'contact',
+      description:
+        'Email me for any projects to contribute or any job proposals.',
+    },
+    {
+      name: 'clear',
+      description: 'Clear the terminal screen.',
+    },
   ],
-  social: {
-    github: 'github',
-    linkedin: 'linkedin',
-  },
-  email: 'contact@email.com',
+  social: [
+    {
+      name: 'github',
+      icon: 'bx bxl-github',
+      url: 'https://github.com/gerDevX',
+    },
+    {
+      name: 'linkedin',
+      icon: 'bx bxl-linkedin',
+      url: 'https://www.linkedin.com/in/ger10',
+    },
+  ],
+  aboutMe: [
+    'I am a software developer with a focus on back-end development for web applications.',
+    'I am passionate about my work and enjoy learning about new technologies, trends, and researching solutions that help me grow professionally.',
+    'I find enjoyment in developing and proposing new solutions for both work and personal projects.',
+  ],
+  email: 'gDevX@outlook.com',
   hostname: 'gerald.solano',
   username: 'visitor',
-  repo: 'https://github.com/Cveinnt/LiveTerm',
   resume_url: 'https://upload.wikimedia.org/wikipedia/commons/c/cc/Resume.pdf',
-  donate_urls: {
-    paypal: 'https://paypal.me/cveinnt',
-    patreon: 'https://patreon.com/cveinnt',
-  },
   colors: {
     light: {
       background: '#FBF1C9',

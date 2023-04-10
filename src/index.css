@@ -16,6 +16,22 @@ body {
   background-color: #519975;
 }
 
+.inherit,
+a {
+  color: #72f1b8;
+  text-shadow: 0 0 5px #72f1b8;
+}
+a {
+  text-decoration: inherit;
+}
+a:hover {
+  background: #73abad;
+  color: #211830;
+}
+a:focus {
+  outline: 0;
+}
+
 @keyframes typing {
   from {
     width: 0;
