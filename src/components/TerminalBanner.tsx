@@ -1,6 +1,7 @@
 import React from 'react';
 import { config } from '../config';
 import { TerminalRow } from './TerminalRow';
+import default_img from '../assets/ASCII_ART_TRASNPARENT.fw.png';
 
 export const TerminalBanner: React.FC = () => {
   const bannerIntroText = [
@@ -11,6 +12,9 @@ export const TerminalBanner: React.FC = () => {
 
   return (
     <div className="text-left p-4">
+      <div id="logo-main">
+        <img src={default_img} alt="Logo Main" />
+      </div>
       <TerminalRow textLines={bannerIntroText} typeSpeed={700} />
     </div>
   );

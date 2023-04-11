@@ -16,6 +16,17 @@ body {
   background-color: #519975;
 }
 
+#logo-main img {
+  background-image: url('./assets/ASCII_ART_GER_WHITE.fw.png');
+  width: 720px;
+  height: 190px;
+  opacity: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: show 3s ease forwards;
+  animation-delay: 0.1s;
+}
+
 .inherit,
 a {
   color: #72f1b8;
